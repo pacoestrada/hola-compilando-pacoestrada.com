@@ -1,7 +1,7 @@
 {
     "uuid": "hola-compilando@pacoestrada",
     "name": "Hola Compilando",
-    "description": "Esta es una extensión de ejemplo.",
+    "description": "Esta es una extensión de ejemplo y practicas.",
     "shell-version": [ "42", "42.5"],
     "url": "https://github.com/pacoestrada/hola-compilando-pacoestrada"
 }
