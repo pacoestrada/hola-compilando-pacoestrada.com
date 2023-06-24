@@ -1,5 +1,5 @@
 {
-  "uuid": "HolaCompilando@pacoestrada.com",
+  "uuid": "hola-compilando@pacoestrada.com",
   "name": "Hola Compilando",
   "description": "Esta extensión abre la página de ChatGPT en Google Chrome",
   "shell-version": ["44.5"],
