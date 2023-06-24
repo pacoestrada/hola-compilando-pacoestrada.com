@@ -14,7 +14,7 @@ function init() {
         track_hover: true
     });
 
-    // Asume que el logotipo está en "~/.local/share/icons/hicolor/scalable/apps/openai-logo.svg"
+    // Asume que el logotipo está en la misma carpeta"
     let gicon = Gio.icon_new_for_string("openai.svg");
     let icon = new St.Icon({
         gicon: gicon,
