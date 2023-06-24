@@ -5,9 +5,9 @@ const Util = imports.misc.util;
 
 let button;
 
-class OpenChromeButton extends PanelMenu.Button {
+class HolaCompilando extends PanelMenu.Button {
     _init() {
-        super._init(0.0, 'Open Chrome', false);
+        super._init(0.0, 'Hola Compilando', false);
         this.add_child(new St.Icon({
             icon_name: 'google-chrome-symbolic',
             style_class: 'system-status-icon'
@@ -21,11 +21,11 @@ class OpenChromeButton extends PanelMenu.Button {
 }
 
 function init() {
-    button = new OpenChromeButton();
+    button = new HolaCompilando();
 }
 
 function enable() {
-    Main.panel.addToStatusArea('open-chrome-button', button);
+    Main.panel.addToStatusArea('hola-compilando-button', button);
 }
 
 function disable() {
