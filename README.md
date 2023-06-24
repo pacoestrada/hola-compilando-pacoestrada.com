@@ -1,2 +1,3 @@
 # hola-compilando-pacoestrada
-Probando a crear extensiones para Gnome Shell
+Pruebas para crear extensiones de gnome-shell.
+Esta extensión abre Google-Chrome por la web de chatGPT
