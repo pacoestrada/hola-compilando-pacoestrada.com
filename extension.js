@@ -1,4 +1,5 @@
 const St = imports.gi.St;
+const Gio = imports.gi.Gio;  // necesitarás también importar Gio
 const Main = imports.ui.main;
 const Shell = imports.gi.Shell;
 const Util = imports.misc.util;
@@ -13,8 +14,10 @@ function init() {
         track_hover: true
     });
 
+    // Asume que el logotipo está en "~/.local/share/icons/hicolor/scalable/apps/openai-logo.svg"
+    let gicon = Gio.icon_new_for_string("openai.svg");
     let icon = new St.Icon({
-        icon_name: 'system-run-symbolic',
+        gicon: gicon,
         style_class: 'system-status-icon'
     });
 
