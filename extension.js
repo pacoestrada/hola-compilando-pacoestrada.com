@@ -1,33 +1,33 @@
 const St = imports.gi.St;
 const Main = imports.ui.main;
-const PanelMenu = imports.ui.panelMenu;
+const Shell = imports.gi.Shell;
 const Util = imports.misc.util;
 
 let button;
 
-class HolaCompilando extends PanelMenu.Button {
-    _init() {
-        super._init(0.0, 'Hola Compilando', false);
-        this.add_child(new St.Icon({
-            icon_name: 'google-chrome-symbolic',
-            style_class: 'system-status-icon'
-        }));
-        this.connect('button-press-event', this._onClick.bind(this));
-    }
-
-    _onClick() {
-        Util.spawn(['google-chrome', 'https://openai.com/research/chatgpt']);
-    }
-}
-
 function init() {
-    button = new HolaCompilando();
+    button = new St.Bin({
+        style_class: 'panel-button',
+        reactive: true,
+        can_focus: true,
+        track_hover: true
+    });
+
+    let icon = new St.Icon({
+        icon_name: 'system-run-symbolic',
+        style_class: 'system-status-icon'
+    });
+
+    button.set_child(icon);
+    button.connect('button-press-event', _ => {
+        Util.spawn(["google-chrome", "https://openai.com/research/chatgpt"]);
+    });
 }
 
 function enable() {
-    Main.panel.addToStatusArea('hola-compilando-button', button);
+    Main.panel._rightBox.insert_child_at_index(button, 0);
 }
 
 function disable() {
-    button.destroy();
+    Main.panel._rightBox.remove_child(button);
 }
