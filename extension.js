@@ -17,7 +17,7 @@ var HolaCompilando = class HolaCompilando extends PanelMenu.Button {
         this.add_actor(icon);
 
         this.connect('button-press-event', () => {
-            GLib.spawn_command_line_async('python3 /ruta/al/script/gtk_window.py');
+            GLib.spawn_command_line_async('python3 gtk_window.py');
         });
     }
 }
