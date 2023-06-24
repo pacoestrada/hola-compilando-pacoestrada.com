@@ -20,7 +20,7 @@ function init() {
 
     button.set_child(icon);
     button.connect('button-press-event', _ => {
-        Util.spawn(["google-chrome", "https://openai.com/research/chatgpt"]);
+        Util.spawn(["google-chrome", "https://chat.openai.com/auth/login"]);
     });
 }
 
