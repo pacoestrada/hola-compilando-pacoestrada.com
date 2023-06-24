@@ -2,7 +2,7 @@
     {
         "shell-version": ["3.38", "40", "40.1", "40.2", "40.3", "40.4", "44.5"],
         "uuid": "hola-compilando@pacoestrada",
-        "name": "Hola Compilando",
+        "name": "HolaCompilando",
         "description": "Extensión que abre Google Chrome al sitio web de ChatGPT",
         "url": "https://github.com/pacoestrada/hola-compilando-pacoestrada",
         "exec-command": ["google-chrome"]
