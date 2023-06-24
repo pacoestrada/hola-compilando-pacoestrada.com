@@ -1,40 +1,33 @@
 const St = imports.gi.St;
 const Main = imports.ui.main;
-const Clutter = imports.gi.Clutter;
-const ModalDialog = imports.ui.modalDialog;
+const PanelMenu = imports.ui.panelMenu;
+const Util = imports.misc.util;
 
-let button, dialog;
+let button;
 
-class MyDialog extends ModalDialog.ModalDialog {
+class OpenChromeButton extends PanelMenu.Button {
     _init() {
-        super._init();
-        let label = new St.Label({ text: 'Hola Compilando' });
-        this.contentLayout.add(label);
-        this.setButtons([{ label: 'Cerrar', action: this.close.bind(this), key: Clutter.KEY_Return }]);
+        super._init(0.0, 'Open Chrome', false);
+        this.add_child(new St.Icon({
+            icon_name: 'google-chrome-symbolic',
+            style_class: 'system-status-icon'
+        }));
+        this.connect('button-press-event', this._onClick.bind(this));
+    }
+
+    _onClick() {
+        Util.spawn(['google-chrome', 'https://openai.com/research/chatgpt']);
     }
 }
 
 function init() {
-    button = new St.Bin({ style_class: 'panel-button' });
-    let icon = new St.Icon({ icon_name: 'system-run-symbolic', style_class: 'system-status-icon' });
-    button.set_child(icon);
-    button.connect('button-press-event', function() {
-        if (!dialog) {
-            dialog = new MyDialog();
-        }
-        dialog.open();
-    });
+    button = new OpenChromeButton();
 }
 
 function enable() {
-    Main.panel._rightBox.insert_child_at_index(button, 0);
+    Main.panel.addToStatusArea('open-chrome-button', button);
 }
 
 function disable() {
-    Main.panel._rightBox.remove_child(button);
-    if (dialog) {
-        dialog.close();
-        dialog = null;
-    }
+    button.destroy();
 }
-
