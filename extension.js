@@ -1,35 +1,40 @@
 const St = imports.gi.St;
 const Main = imports.ui.main;
-const PanelMenu = imports.ui.panelMenu;
-const GLib = imports.gi.GLib;
+const Lang = imports.lang;
+const Clutter = imports.gi.Clutter;
+const ModalDialog = imports.ui.modalDialog;
 
-let menu;
+let button, dialog;
 
-var HolaCompilando = class HolaCompilando extends PanelMenu.Button {
-    _init() {
-        super._init(0.0, "Hola Compilando");
+const MyDialog = new Lang.Class({
+    Name: 'MyDialog',
+    Extends: ModalDialog.ModalDialog,
 
-        let icon = new St.Icon({
-            icon_name: 'system-run-symbolic',
-            style_class: 'system-status-icon'
-        });
-
-        this.add_actor(icon);
-
-        this.connect('button-press-event', () => {
-            GLib.spawn_command_line_async('python3 gtk_window.py');
-        });
+    _init: function() {
+        this.parent();
+        let label = new St.Label({ text: 'Hola Compilando' });
+        this.contentLayout.add(label);
+        this.setButtons([{ label: 'Cerrar', action: this.close.bind(this), key: Clutter.KEY_Return }]);
     }
-}
+});
 
 function init() {
+    button = new St.Bin({ style_class: 'panel-button' });
+    let icon = new St.Icon({ icon_name: 'system-run-symbolic', style_class: 'system-status-icon' });
+    button.set_child(icon);
+    button.connect('button-press-event', function() {
+        dialog = new MyDialog();
+        dialog.open();
+    });
+
+    dialog = new MyDialog();
 }
 
 function enable() {
-    menu = new HolaCompilando();
-    Main.panel.addToStatusArea('hola-compilando', menu);
+    Main.panel._rightBox.insert_child_at_index(button, 0);
 }
 
 function disable() {
-    menu.destroy();
+    Main.panel._rightBox.remove_child(button);
 }
+
