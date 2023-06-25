@@ -23,7 +23,7 @@ function init() {
 
     button.set_child(icon);
     button.connect('button-press-event', _ => {
-        Util.spawn(["google-chrome", "https://chat.openai.com/auth/login"]);
+        Util.spawn(["xdg-open", "https://chat.openai.com/auth/login"]);
     });
 }
 
